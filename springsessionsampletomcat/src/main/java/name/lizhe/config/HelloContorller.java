@@ -14,11 +14,16 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @RestController  
 @RequestMapping(value="/api") 
-@EnableRedisHttpSession
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800)
 public class HelloContorller {       
    @RequestMapping(value="/hello")  
    public String hello(HttpServletRequest req){  
-       System.out.println("spring mvc hello world!");  
+	   if(req.getSession().getAttribute("testKey")!=null){
+		   System.out.println(req.getSession().getAttribute("testKey").toString());  
+	   }else{
+		   System.out.println("empty"); 
+	   }
+       
        req.getSession().setAttribute("testKey", "testValue");
        return "hello world";  
    }  
