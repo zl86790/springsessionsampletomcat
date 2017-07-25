@@ -8,6 +8,5 @@
 
     <context:component-scan base-package="name"></context:component-scan>  
     <mvc:annotation-driven />  
-
 	
 </beans>  
